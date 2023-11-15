@@ -20,7 +20,8 @@ function CreateCabinForm() {
   const { isLoading, mutate } = useMutation({
     mutationFn: addCabin,
     onSuccess: () => {
-      toast.success("New cabin successfully created");
+      toast.success("New cabin successfully added");
+
       queryClient.invalidateQueries({ queryKey: ["cabins"] });
       reset();
     },
@@ -28,7 +29,7 @@ function CreateCabinForm() {
   });
 
   function onSubmit(data) {
-    mutate(data);
+    mutate({ ...data, image: data.image[0] });
   }
 
   function onError(error) {
@@ -87,7 +88,7 @@ function CreateCabinForm() {
           {...register("discount", {
             required: "This field is required",
             validate: (value) =>
-              value <= getValues().regularPrice ||
+              Number(value) <= Number(getValues().regularPrice) ||
               "Discount should be less than the regular price",
           })}
         />
@@ -106,7 +107,13 @@ function CreateCabinForm() {
       </FormRow>
 
       <FormRow label="Cabin photo">
-        <FileInput id="image" accept="image/*" />
+        <FileInput
+          id="image"
+          accept="image/*"
+          {...register("image", {
+            required: "This field is required",
+          })}
+        />
       </FormRow>
 
       <FormRow>

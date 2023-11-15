@@ -53,9 +53,9 @@ function CabinRow({ cabin }) {
     mutationFn: (id) => deleteCabin(id),
     onSuccess: () => {
       toast.success("Cabin succesfully deleted");
-      
+
       queryClient.invalidateQueries({
-        queryKey: "cabins",
+        queryKey: ["cabins"],
       });
     },
     onError: (error) => toast.error(error.message),
@@ -65,7 +65,7 @@ function CabinRow({ cabin }) {
     <TableRow role="row">
       <Img src={image} />
       <Cabin>{name}</Cabin>
-      <div>Fits up to {maxCapacity}</div>
+      <div>Fits up to {maxCapacity} guests</div>
       <Price>{formatCurrency(regularPrice)}</Price>
       <Discount>{formatCurrency(discount)}</Discount>
       <button onClick={() => mutate(id)} disabled={isLoading}>
