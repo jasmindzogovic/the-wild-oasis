@@ -1,6 +1,5 @@
 import { createContext, useContext } from "react";
 import styled from "styled-components";
-import CabinRow from "../features/cabins/CabinRow";
 
 const StyledTable = styled.div`
   border: 1px solid var(--color-grey-200);
