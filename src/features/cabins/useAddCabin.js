@@ -15,5 +15,5 @@ export function useAddCabin() {
     onError: (error) => toast.error(error.message),
   });
 
-  return { isAdding, addCabin};
+  return { isAdding, addCabin };
 }
