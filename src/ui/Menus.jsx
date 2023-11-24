@@ -87,6 +87,7 @@ function Toggle({ id }) {
   const { openId, close, open, setPosition } = useContext(MenusContext);
 
   function handleClick(e) {
+    e.stopPropagation();
     const position = e.target.closest("button").getBoundingClientRect();
     const { x, y } = position;
 
@@ -111,7 +112,7 @@ function List({ children, id }) {
   const { openId, position, close } = useContext(MenusContext);
   const { x, y } = position;
 
-  const ref = useModalClick(close);
+  const ref = useModalClick(close, false);
 
   if (openId !== id) return null;
 
