@@ -77,7 +77,9 @@ function CabinRow({ cabin }) {
               </Menus.Button>
 
               <Modal.Open opens="edit">
-                <Menus.Button icon={<HiPencil />}>Edit</Menus.Button>
+                <Menus.Button icon={<HiPencil />} disabled={isAdding}>
+                  Edit
+                </Menus.Button>
               </Modal.Open>
 
               <Modal.Open opens="delete">
